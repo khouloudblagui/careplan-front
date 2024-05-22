@@ -21,7 +21,6 @@ export class AppSideLoginComponent {
   setUserRole(role: string) {
     this.userRoleService.setUserRole(role);
     this.userRole = role;
-    this.router.navigate([`/${role}`]); // Redirection vers la page correspondante
   }
 
   resetUserRole() {
@@ -37,7 +36,13 @@ export class AppSideLoginComponent {
     // Save the token using AuthService
     this.authService.login(token);
 
-    // Redirect to the dashboard
-    this.router.navigate(['/dashboard']);
+    // Redirect to the corresponding page based on the selected role
+    if (this.userRole === 'admin') {
+      this.router.navigate(['/admin']);
+    } else if (this.userRole === 'patient') {
+      this.router.navigate(['/patient']);
+    } else if (this.userRole === 'doctor') {
+      this.router.navigate(['/doctor']);
+    }
   }
 }

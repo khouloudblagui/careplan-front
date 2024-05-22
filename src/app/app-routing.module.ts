@@ -10,7 +10,16 @@ import { PatientComponent } from './patient/patient.component';
 import { DoctorComponent } from './doctor/doctor.component';
 
 const routes: Routes = [
-  {
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: AppSideLoginComponent },
+  { path: 'register', component: AppSideRegisterComponent },
+  { path: 'dashboard', component: PatientComponent, canActivate: [AuthGuard] },
+  { path: 'patient', component: PatientComponent },
+  { path: 'doctor', component: DoctorComponent },
+  { path: 'admin', component: AdminComponent },
+  // Add more routes as needed
+];
+  /*{
     path: '',
     component: BlankComponent,
     children: [
@@ -39,7 +48,7 @@ const routes: Routes = [
           import('./pages/pages.module').then((m) => m.PagesModule),
         canActivate: [AuthGuard],
       },
-  
+
       {
         path: 'admin',
         component: AdminComponent,
@@ -57,7 +66,7 @@ const routes: Routes = [
       },
     ],
   },
-];
+];*/
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
