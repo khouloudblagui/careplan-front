@@ -1,5 +1,54 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppSideLoginComponent } from './pages/authentication/login/login.component';
+import { AppSideRegisterComponent } from './pages/authentication/register/register.component';
+import { AdminComponent } from './admin/admin.component';
+import { PatientComponent } from './patient/patient.component';
+import { DoctorComponent } from './doctor/doctor.component';
+import { AuthGuard } from './auth.guard';
+
+const routes: Routes = [
+  { path: '', redirectTo: '/authentication/login', pathMatch: 'full' },
+  {
+    path: 'authentication',
+    children: [
+      { path: 'login', component: AppSideLoginComponent },
+      { path: 'register', component: AppSideRegisterComponent }
+    ]
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'patient',
+    component: PatientComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'doctor',
+    component: DoctorComponent,
+    canActivate: [AuthGuard]
+  },
+  // Add more routes as needed
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+
+
+
+
+
+
+
+/*import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/full.component';
 import { AuthGuard } from './auth.guard';
@@ -14,7 +63,10 @@ const routes: Routes = [
   { path: 'login', component: AppSideLoginComponent },
   { path: 'register', component: AppSideRegisterComponent },
   { path: 'dashboard', component: PatientComponent, canActivate: [AuthGuard] },
-  { path: 'patient', component: PatientComponent },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
+  { path: 'patient', component: PatientComponent, canActivate: [AuthGuard] },
+  { path: 'doctor', component: DoctorComponent, canActivate: [AuthGuard] },
+  /*{ path: 'patient', component: PatientComponent },
   { path: 'doctor', component: DoctorComponent },
   { path: 'admin', component: AdminComponent },
   // Add more routes as needed
@@ -66,7 +118,7 @@ const routes: Routes = [
       },
     ],
   },
-];*/
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

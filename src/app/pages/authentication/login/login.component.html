@@ -57,9 +57,9 @@
             <button mat-stroked-button color="accent" class="w-100 m-t-12" (click)="resetUserRole()">Back</button>
           </form>
 
-          <!-- Option to create a new account -->
-          <span class="d-block f-w-500 text-center m-t-24">New to Careplane?
-            <a [routerLink]="['/authentication/register']" class="text-decoration-none text-primary f-w-500 f-s-14">Create an account</a>
+          <!-- Option to create a new account (only for admin and doctor) -->
+          <span *ngIf="userRole === 'admin' || userRole === 'doctor'" class="d-block f-w-500 text-center m-t-24">Create an account
+            <a [routerLink]="['/authentication/register']" class="text-decoration-none text-primary f-w-500 f-s-14">here</a>
           </span>
         </mat-card-content>
       </mat-card>
