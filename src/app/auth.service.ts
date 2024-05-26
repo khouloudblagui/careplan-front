@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthService {
 
-  private baseUrl = 'http://localhost:8081//api/v1/auth/registerAdminng '; // Remplacez cela par l'URL de votre backend
+  private baseUrl = 'http://localhost:8081//api/v1/auth/registerAdmin '; // Remplacez cela par l'URL de votre backend
 
   constructor(private http: HttpClient) { }
 
